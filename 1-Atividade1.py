@@ -1,25 +1,24 @@
-# dias estao em letras minusculas , se não der certo mudar para maiu
-dias=["segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira"].upper()
-contSeg=0
-contTer=0
-contQua=0
-contQui=0
-contSex=0
-colaboradores=int(input("Informe o número de colaboradores: "))
-for colaborador in colaboradores:
-    diaPreferencia=input("Informe o dia de sua preferência (segunda-feira,terça-feira,quarta-feira,quinta-feira ou sexta-feira): ").upper().strip()
-    while diaPreferencia not in dias:
-        diaPreferencia=input("Valor inválido, informe o dia de sua preferência (segunda-feira,terça-feira,quarta-feira,quinta-feira ou sexta-feira): ").upper().strip()
-    if diaPreferencia=="SEGUNDA-FEIRA" or diaPreferencia=="SEGUNDA":
-        contSeg+=1
-    elif diaPreferencia=="TERÇA-FEIRA" or diaPreferencia=="TERÇA":
-        contTer+=1
-    elif diaPreferencia=="QUARTA-FEIRA" or diaPreferencia=="QUARTA":
-        contQua+=1
-    elif diaPreferencia=="QUINTA-FEIRA" or diaPreferencia=="QUINTA":
-        contQui+=1
+dias_semana = ["segunda-feira", "terça-feira","quarta-feira", "quinta-feira", "sexta-feira"]
+votos = {dia: 0 for dia in dias_semana}
+
+num_colaboradores = int(input("Informe o número de colaboradores que irão votar: "))
+for i in range(num_colaboradores):
+    print(f"\nColaborador {i+1}:") 
+    while True:
+        voto = input(f"Escolha um dia da semana ({', '.join(dias_semana)}): ").strip().lower()
+        if voto in dias_semana:
+            votos[voto] += 1
+            break
+        else:
+            print("Dia inválido. Tente novamente.")
+
+    max_votos = max(votos.values())
+    dias_vencedores = [dia for dia,count in votos.items() if count == max_votos]
+    print("\nResultado da votação:")
+    
+    for dia, count in votos.items():
+        print(f"{dia.capitalize()}: {count} voto(s)")
+    if len(dias_vencedores) > 1:
+        print(f"\nHouve um empate entre os dias: {', '.join(dias_vencedores)}")
     else:
-        contSex+=1
-    
-    if maior==:
-    
+        print(f"\nO dia escolhido foi: {dias_vencedores[0].capitalize()}")
